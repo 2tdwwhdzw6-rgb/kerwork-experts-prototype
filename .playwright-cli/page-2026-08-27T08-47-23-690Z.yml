@@ -1,0 +1,88 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]: ▯
+    - button "＋ 新建任务" [ref=e5]
+    - generic [ref=e6]: 工作区
+    - generic [ref=e7]: ⌂ 任务列表
+    - generic [ref=e8]: ✦ 专家
+    - generic [ref=e9]:
+      - generic [ref=e10]: 最近任务
+      - generic [ref=e11]: 整理桌面文件
+      - generic [ref=e12]: 生成工作月报
+      - generic [ref=e13]: KerWork 官网配色改版
+      - generic [ref=e14]: 检查电脑发热情况
+    - generic [ref=e15]:
+      - generic [ref=e16]: "11"
+      - generic [ref=e17]: "11111"
+      - generic [ref=e18]: ⚙
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]: ◒
+      - generic [ref=e22]: ⌘K ☷
+    - generic [ref=e23]:
+      - generic [ref=e24]: 专家工作台
+      - generic [ref=e25]: 选择一个专业角色，把明确的任务交给它完成
+      - generic [ref=e26]:
+        - article [ref=e27] [cursor=pointer]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: ✦
+            - generic [ref=e30]:
+              - heading "PPT 专家" [level=3] [ref=e31]
+              - text: 汇报表达
+          - paragraph [ref=e32]: 把零散想法整理成能直接拿去沟通的演示方案：梳理逻辑、安排页面、补齐表达重点，并交付可继续编辑的 PPT。
+        - article [ref=e33] [cursor=pointer]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: ▦
+            - generic [ref=e36]:
+              - heading "Excel 专家" [level=3] [ref=e37]
+              - text: 表格处理
+          - paragraph [ref=e38]: 把重复的表格工作交给它：从零搭建模板、设计公式、整理字段和生成可复用的工作表。
+        - article [ref=e39] [cursor=pointer]:
+          - generic [ref=e40]:
+            - generic [ref=e41]: ▤
+            - generic [ref=e42]:
+              - heading "文件转换专家" [level=3] [ref=e43]
+              - text: 格式转换
+          - paragraph [ref=e44]: 处理文件格式和内容整理的杂事，完成文本提取、版式整理或文件合并。
+        - article [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: ◈
+            - generic [ref=e48]:
+              - heading "数据分析专家" [level=3] [ref=e49]
+              - text: 数据洞察
+          - paragraph [ref=e50]: 把数据变成一份能支持判断的分析结果：明确分析目标、识别变化与异常，并交付图表和结论报告。
+        - article [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]:
+            - generic [ref=e53]: ♡
+            - generic [ref=e54]:
+              - heading "小红书文案专家" [level=3] [ref=e55]
+              - text: 选题灵感
+          - paragraph [ref=e56]: 把一个想法发展成更容易被看见、读完和收藏的内容。
+        - article [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: ◒
+            - generic [ref=e60]:
+              - heading "周报/工作总结专家" [level=3] [ref=e61]
+              - text: 工作梳理
+          - paragraph [ref=e62]: 把工作过程整理成有重点的汇报材料，交付可直接修改和发送的周报或总结。
+        - article [ref=e63] [cursor=pointer]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: ⌁
+            - generic [ref=e66]:
+              - heading "股票研究专家" [level=3] [ref=e67]
+              - text: 行情查询
+          - paragraph [ref=e68]: 查询和分析个股、指数与板块信息，呈现数据、逻辑与风险，不提供买卖建议。
+        - article [ref=e69] [cursor=pointer]:
+          - generic [ref=e70]:
+            - generic [ref=e71]: ⌘
+            - generic [ref=e72]:
+              - heading "科研专家" [level=3] [ref=e73]
+              - text: 文献阅读
+          - paragraph [ref=e74]: 把模糊研究方向推进成可执行的资料包：阅读和筛选文献、提炼观点、整理研究框架。
+        - article [ref=e75] [cursor=pointer]:
+          - generic [ref=e76]:
+            - generic [ref=e77]: ☼
+            - generic [ref=e78]:
+              - heading "算命专家" [level=3] [ref=e79]
+              - text: 轻松解读
+          - paragraph [ref=e80]: 用轻松、有仪式感的互动，帮你把当下的心情和困惑整理成可回看的娱乐性解读。

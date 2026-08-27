@@ -1,0 +1,44 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]: ▯
+    - button "＋ 新建任务" [ref=e5]
+    - generic [ref=e6]: 工作区
+    - generic [ref=e7]: ⌂ 任务列表
+    - generic [ref=e8]: ✦ 专家
+    - generic [ref=e9]:
+      - generic [ref=e10]: 最近任务
+      - generic [ref=e11]: 整理桌面文件
+      - generic [ref=e12]: 生成工作月报
+      - generic [ref=e13]: KerWork 官网配色改版
+      - generic [ref=e14]: 检查电脑发热情况
+    - generic [ref=e15]:
+      - generic [ref=e16]: "11"
+      - generic [ref=e17]: "11111"
+      - generic [ref=e18]: ⚙
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]: ◒
+      - generic [ref=e22]: ⌘K ☷
+    - generic [ref=e81]:
+      - generic [ref=e82] [cursor=pointer]: ← 返回专家列表
+      - generic [ref=e83]:
+        - generic [ref=e84]: ✦
+        - generic [ref=e85]:
+          - heading "PPT 专家" [level=1] [ref=e86]
+          - generic [ref=e87]:
+            - generic [ref=e88]: 汇报表达
+            - generic [ref=e89]: 结构梳理
+            - generic [ref=e90]: 视觉呈现
+      - generic [ref=e91]: 把零散想法整理成能直接拿去沟通的演示方案：梳理逻辑、安排页面、补齐表达重点，并交付可继续编辑的 PPT。
+      - generic [ref=e92]:
+        - heading "试试这样问我" [level=3] [ref=e93]
+        - generic [ref=e94] [cursor=pointer]:
+          - text: “围绕“AI 如何改变个人工作方式”，生成一份 8 页分享 PPT”
+          - generic [ref=e95]: ↗
+        - generic [ref=e96] [cursor=pointer]:
+          - text: “为一次产品发布会制作完整 PPT，包含产品亮点、用户价值和发布流程”
+          - generic [ref=e97]: ↗
+        - generic [ref=e98] [cursor=pointer]:
+          - text: “把“第一次做年度复盘”做成一份可直接汇报的 PPT”
+          - generic [ref=e99]: ↗
+      - button "召唤专家" [ref=e100] [cursor=pointer]
