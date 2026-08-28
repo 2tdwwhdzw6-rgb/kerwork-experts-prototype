@@ -116,8 +116,7 @@ function showToast(text) {
 
 /* ========== 页面路由 ========== */
 let currentPage = 'home';
-let activeExpert = null;   // 当前选中但未发送的专家索引
-let lockedExpert = null;   // 任务已发送，专家锁定
+let activeExpert = null;   // 当前输入区选中的专家索引
 
 function showHome() {
   currentPage = 'home';
@@ -148,39 +147,33 @@ function showHome() {
   renderShortcuts();
   bindHomeInput();
   // 恢复专家 badge 状态
-  if (lockedExpert !== null) {
-    renderExpertBadge(lockedExpert, true);
+  if (activeExpert !== null) {
+    renderExpertBadge(activeExpert);
+  }
+  // 回填待发送的提示词
+  if (pendingPrompt) {
+    const input = $('mainInput');
+    if (input) input.value = pendingPrompt;
+    pendingPrompt = null;
   } else if (activeExpert !== null) {
-    renderExpertBadge(activeExpert, false);
+    const input = $('mainInput');
+    if (input) input.focus();
   }
 }
 
-function renderExpertBadge(idx, locked) {
+function renderExpertBadge(idx) {
   const e = experts[idx];
   const slot = $('expertBadgeSlot');
   if (!slot) return;
 
   slot.innerHTML = `<div class="input-expert-badge">
-    <div class="badge-icon">${e.icon}</div><span>${e.name}</span>${!locked ? '<span class="badge-close">×</span>' : ''}
+    <div class="badge-icon">${e.icon}</div><span>${e.name}</span><span class="badge-close">×</span>
   </div>`;
 
-  if (!locked) {
-    slot.querySelector('.badge-close').onclick = (ev) => {
-      ev.stopPropagation();
-      clearActiveExpert();
-    };
-  }
-
-  // 显示锁定提示
-  if (locked) {
-    const meta = $('inputMeta');
-    if (meta && !meta.querySelector('.task-locked-notice')) {
-      const notice = document.createElement('div');
-      notice.className = 'task-locked-notice';
-      notice.innerHTML = `<span class="locked-dot"></span>${e.name} 处理中，换专家将在下个任务生效`;
-      meta.prepend(notice);
-    }
-  }
+  slot.querySelector('.badge-close').onclick = (ev) => {
+    ev.stopPropagation();
+    clearActiveExpert();
+  };
 }
 
 function clearActiveExpert() {
@@ -294,17 +287,8 @@ document.addEventListener('click', (ev) => {
 });
 
 function handleSend(text) {
-  const expertIdx = activeExpert !== null ? activeExpert : lockedExpert;
-  if (expertIdx !== null) {
-    const e = experts[expertIdx];
-    lockedExpert = expertIdx;
-    activeExpert = null;
-    renderExpertBadge(expertIdx, true);
-    $('mainInput').value = '';
-    $('mainInput').placeholder = '继续补充需求，或等待专家完成…';
-  } else {
-    $('mainInput').value = '';
-  }
+  // 发送后清空输入框，badge 保持（方便连续发）
+  $('mainInput').value = '';
 }
 
 function renderShortcuts() {
@@ -317,7 +301,7 @@ function renderShortcuts() {
     el.onclick = () => {
       const s = shortcuts[+el.dataset.idx];
       activeExpert = s.expertIdx;
-      renderExpertBadge(s.expertIdx, false);
+      renderExpertBadge(s.expertIdx);
       const input = $('mainInput');
       if (input) { input.value = s.text; input.focus(); }
     };
@@ -398,29 +382,17 @@ modalMask.addEventListener('click', ev => { if (ev.target === modalMask) closeMo
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeModal(); });
 
 /* ========== 开始使用专家 ========== */
-function startExpert(idx, prompt) {
-  const e = experts[idx];
+let pendingPrompt = null;
 
-  // 直接新开任务会话，当前任务不受影响
-  lockedExpert = null;
+function startExpert(idx, prompt) {
   activeExpert = idx;
+  pendingPrompt = prompt || null;
   showHome();
-  setTimeout(() => {
-    const input = $('mainInput');
-    if (prompt) {
-      input.value = prompt;
-    } else {
-      input.value = '';
-      input.focus();
-    }
-    renderExpertBadge(idx, false);
-  }, 50);
 }
 
-/* 新建任务：重置锁定状态 */
+/* 新建任务 */
 function newTask() {
-  // 新任务时，如果有 activeExpert 待切换则生效
-  lockedExpert = null;
+  activeExpert = null;
   showHome();
   const input = $('mainInput');
   if (input) { input.value = ''; input.focus(); }
