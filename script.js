@@ -1,105 +1,114 @@
 const experts = [
   {
-    name: 'PPT 专家', icon: '✦', tags: ['汇报表达', '结构梳理', '视觉呈现'],
-    desc: '把零散想法整理成能直接拿去沟通的演示方案：梳理逻辑、安排页面、补齐表达重点，并交付可继续编辑的 PPT。',
+    name: 'PPT 设计师', icon: '🎨', tags: ['汇报表达', '结构梳理', '视觉呈现'],
+    desc: '帮你把零散想法整理成结构清晰、拿去就能讲的 PPT；三页能讲清的事，绝不做三十页。',
     examples: [
       '围绕"AI 如何改变个人工作方式"，生成一份 PPT',
-      '为「xx」产品发布会制作完整 PPT，包含产品亮点、用户价值和发布流程',
+      '为「xx」产品发布会制作完整 PPT',
       '生成一份精美的PPT模板，用于自我介绍'
     ]
   },
   {
-    name: 'Excel 专家', icon: '▦', tags: ['表格处理', '公式计算', '效率提升'],
-    desc: '把重复的表格工作交给它：从零搭建模板、设计公式、整理字段和生成可复用的工作表，让日常记录和统计更省心。',
+    name: 'Excel 表格助手', icon: '📊', tags: ['表格处理', '公式计算', '效率提升'],
+    desc: '模板搭建、公式编写、数据清洗一条龙，说清需求就能拿到改好的表。',
     examples: [
-      '生成一个个人记账 Excel 模板，包含分类、月度汇总、预算对比和可视化图表',
-      '生成一个项目进度管理表',
-      '设计一个家庭旅行预算表，自动汇总交通、住宿、餐饮和人均花费'
+      '做一个家庭记账表，能自动汇总每月支出',
+      '这两张表按订单号合并一下，重复的去掉',
+      '这列日期格式太乱了，帮我统一成 2024/01/01'
     ]
   },
   {
-    name: '文件转换专家', icon: '▤', tags: ['格式转换', 'TeX 排版', '内容提取'],
-    desc: '处理文件格式和内容整理的杂事：按目标用途设计转换方案，完成文本提取、版式整理或文件合并，并交付可继续使用的结果。',
+    name: '文件格式转换师', icon: '🔄', tags: ['格式转换', 'TeX 排版', '内容提取'],
+    desc: '各类格式互转，转完就能用：不乱码、不丢排版，专治"打不开"和"排版全飞了"。',
     examples: [
-      '生成一份可直接使用的会议纪要 Word 模板',
-      '生成一份可直接编辑的 PDF 电子书模板',
-      '生成一份可直接打印的旅行计划 PDF，并转换成 html 格式'
+      '生成一份会议纪要 Word 模板',
+      '生成一份可编辑的 PDF 电子书模板',
+      '生成旅行计划 PDF 并转成 html'
     ]
   },
   {
-    name: '数据分析专家', icon: '◈', tags: ['数据洞察', '指标理解', '图表表达'],
-    desc: '把数据变成一份能支持判断的分析结果：明确分析目标、搭建指标框架、识别变化与异常，并交付图表和结论报告。',
+    name: '数据分析专员', icon: '📉', tags: ['数据洞察', '指标理解', '图表表达'],
+    desc: '结论先行、图表佐证，把一堆数字变成能做判断的答案；数据不够时也会老实说"不够"。',
     examples: [
-      '梳理腾讯近期的财报数据，并进行建模',
-      '为「xx」App 设计首月数据分析报告',
-      '根据"销售额下降"生成一套排查原因的分析框架'
+      '梳理腾讯近期财报数据并建模',
+      '为 App 设计首月数据分析报告',
+      '生成销售额下降的排查分析框架'
     ]
   },
   {
-    name: '小红书文案专家', icon: '♡', tags: ['选题灵感', '内容表达', '标题打磨'],
-    desc: '把一个想法发展成更容易被看见、读完和收藏的内容：找到切入角度，完成标题、正文、封面文案和标签。',
+    name: '小红书爆款文案专家', icon: '📕', tags: ['选题灵感', '内容表达', '标题打磨'],
+    desc: '选题、标题、正文、标签一次配齐，产出能直接发布的完整笔记——目标是让人收藏，而不是划走。',
     examples: [
-      '围绕"一个人如何开始健身"生成 3 个选题方案',
-      '为"第一次租房避坑"生成 10 个标题和正文',
-      '把"用 AI 做周报"做成一篇小红书图文笔记'
+      '想写"第一次租房避坑"，先给我 10 个标题',
+      '把我的健身打卡经历写成一篇笔记',
+      '这篇草稿太平了，帮我改得有网感再配标签'
     ]
   },
   {
-    name: '周报/工作总结专家', icon: '◒', tags: ['工作梳理', '重点提炼', '汇报表达'],
-    desc: '把工作过程整理成有重点的汇报材料：提炼成果、补足表达、区分进展与风险，并交付可直接修改和发送的周报或总结。',
+    name: '去AI味', icon: '✏️', tags: ['文风诊断', '句式重写', '表达自然'],
+    desc: '专治 AI 腔：不堆排比、不喊营销空话、不用"不是…而是…"，把"像 AI 写的"改成"像人写的"。',
     examples: [
-      '生成一份产品经理周报模板',
-      '把"项目延期"整理成面向领导的进展汇报',
-      '生成一份季度工作总结，突出关键成果和下季度计划'
+      '这段是 AI 写的，帮我改得像人写的',
+      '帮我看看这篇文案哪里一股 AI 味',
+      '把这份公告改得别那么官腔'
     ]
   },
   {
-    name: '股票研究专家', icon: '📈', tags: ['行情查询', '财务分析', '研报解读'],
-    desc: '查询和分析个股、指数与板块信息：覆盖行情、财务报表、研报观点、条件筛选和事件影响，呈现数据与逻辑，不提供买卖建议。',
+    name: '工作汇报大师', icon: '📋', tags: ['工作梳理', '重点提炼', '汇报表达'],
+    desc: '把零散记录整理成老板爱看的周报：事实有据、重点清晰，绝不瞎编——包装可以专业，数据绝不注水。',
     examples: [
-      '查询宁德时代近期行情与核心财务指标',
-      '根据市值、估值和股息率筛选符合条件的股票',
-      '整理一则研报对相关标的的影响'
+      '这是我记的流水账，帮我整理成周报',
+      '项目延期了，帮我想想怎么跟领导开口',
+      '把这两个会的纪要合成一份月度总结'
     ]
   },
   {
-    name: '科研专家', icon: '🔬', tags: ['文献阅读', '观点整理', '研究框架'],
-    desc: '把一个模糊的研究方向推进成可执行的资料包：阅读和筛选文献、提炼观点，并整理研究框架。',
+    name: '股票研究员', icon: '📈', tags: ['行情查询', '财务分析', '研报解读'],
+    desc: '行情、财报、研报一站梳理，每个数字都有出处、每个风险提前说；只聊数据和逻辑，不喊"买买买"。',
     examples: [
-      '围绕 RAG 评估生成一份入门资料包',
-      '围绕"人工智能对教育的影响"生成研究问题树和检索方案',
-      '整理 AI agent 研究方向的文献清单'
+      '查询宁德时代近期行情与财务指标',
+      '按市值、估值和股息率筛选股票',
+      '整理研报对相关标的的影响'
     ]
   },
   {
-    name: '算命专家', icon: '🔮', tags: ['轻松解读', '情绪陪伴', '自我探索'],
-    desc: '用轻松、有仪式感的互动，帮你把当下的心情和困惑整理成一份可回看的娱乐性解读；不对现实结果作确定判断。',
+    name: '科研助手', icon: '🔬', tags: ['文献阅读', '观点整理', '研究框架'],
+    desc: '把模糊的研究方向推进成文献清单和研究框架，顺便帮你少读一百篇弯路文献。',
     examples: [
-      '为我生成一份未来一个月的轻松主题解读',
-      '围绕"要不要换工作"生成一份娱乐性探索报告',
-      '生成一份今日抽牌小卡'
+      '围绕 RAG 评估生成入门资料包',
+      '生成研究问题树和文献检索方案',
+      '整理 AI agent 文献清单'
     ]
   },
   {
-    name: '求职调研专家', icon: '💼', tags: ['公司了解', '岗位判断', '面试准备'],
-    desc: '把求职前的零散搜索整理成一份有来源的公司与岗位简报：梳理业务、岗位重点、面试方向和待核实信息。',
+    name: '解忧占卜师', icon: '🔮', tags: ['轻松解读', '情绪陪伴', '自我探索'],
+    desc: '用有仪式感的互动，把心情和困惑整理成轻松的娱乐性解读；准不重要，开心和想得通才重要。',
     examples: [
-      '生成一份产品经理求职前调研清单',
-      '生成一份「目标公司」研究简报模板',
-      '为"第一次参加面试"生成公司调研与准备资料包'
+      '生成未来一个月的轻松主题解读',
+      '我的八字是…帮我算一下下个月运势',
+      '生成今日抽牌小卡'
+    ]
+  },
+  {
+    name: '求职调研师', icon: '💼', tags: ['公司了解', '岗位判断', '面试准备'],
+    desc: '把全网零散的公开信息整理成有来源的公司与岗位简报，投递和面试前先心里有底。',
+    examples: [
+      '我想投字节的产品经理，帮我做份公司调研',
+      '手上两个 offer，帮我对比下这两家公司',
+      '下周面试，帮我整理这家公司的面经和高频问题'
     ]
   }
 ];
 
 const shortcuts = [
-  { icon: '✦', text: '做一份年终汇报 PPT', expertIdx: 0 },
-  { icon: '◈', text: '分析这份销售数据', expertIdx: 3 },
-  { icon: '📈', text: '查宁德时代最新行情', expertIdx: 6 },
-  { icon: '♡', text: '写一篇小红书爆款笔记', expertIdx: 4 },
-  { icon: '◒', text: '整理本周工作写周报', expertIdx: 5 }
+  { icon: '🎨', text: '做一份年终汇报 PPT', expertIdx: 0 },
+  { icon: '📉', text: '分析这份销售数据', expertIdx: 3 },
+  { icon: '📈', text: '查宁德时代最新行情', expertIdx: 7 },
+  { icon: '📕', text: '写一篇小红书爆款笔记', expertIdx: 4 },
+  { icon: '📋', text: '整理本周工作写周报', expertIdx: 6 }
 ];
 
-const quickExperts = [0, 3, 6];
+const quickExperts = [0, 3, 7];
 
 const $ = id => document.getElementById(id);
 const toast = $('toast');
@@ -180,9 +189,6 @@ function clearActiveExpert() {
   activeExpert = null;
   const slot = $('expertBadgeSlot');
   if (slot) slot.innerHTML = '';
-  // 移除锁定提示
-  const notice = document.querySelector('.task-locked-notice');
-  if (notice) notice.remove();
 }
 
 function bindHomeInput() {
@@ -288,27 +294,23 @@ document.addEventListener('click', (ev) => {
 
 function handleSend(text) {
   if (!text) return;
-  // 如果已有专家选中，直接清空输入继续
-  if (activeExpert !== null) {
-    $('mainInput').value = '';
-    return;
-  }
-  // 无专家时：进入任务视图，模拟系统推荐专家
+  $('mainInput').value = '';
   showTaskView(text);
 }
 
-/* ========== 任务视图 + 专家推荐 ========== */
+/* ========== 任务视图 + 专家推荐/切换 ========== */
 const expertKeywords = [
   { keywords: ['ppt', 'PPT', '演示', '汇报', '幻灯片'], idx: 0 },
   { keywords: ['excel', 'Excel', '表格', '记账', '公式', '数据清洗'], idx: 1 },
   { keywords: ['转换', 'PDF', 'Word', 'OCR', '格式'], idx: 2 },
   { keywords: ['分析', '数据', '图表', '指标', '财报'], idx: 3 },
   { keywords: ['小红书', '笔记', '标题', '文案', '选题'], idx: 4 },
-  { keywords: ['周报', '月报', '总结', '汇报', '工作'], idx: 5 },
-  { keywords: ['股票', '行情', '研报', '估值', '财务'], idx: 6 },
-  { keywords: ['文献', '论文', '科研', 'RAG', '研究'], idx: 7 },
-  { keywords: ['算命', '占卜', '运势', '塔罗', '八字', '抽牌'], idx: 8 },
-  { keywords: ['求职', '面试', '公司调研', 'offer'], idx: 9 },
+  { keywords: ['AI味', 'AI 味', '像AI写的', '机器感', '排比', '官腔'], idx: 5 },
+  { keywords: ['周报', '月报', '总结', '汇报', '工作'], idx: 6 },
+  { keywords: ['股票', '行情', '研报', '估值', '财务'], idx: 7 },
+  { keywords: ['文献', '论文', '科研', 'RAG', '研究'], idx: 8 },
+  { keywords: ['算命', '占卜', '运势', '塔罗', '八字', '抽牌'], idx: 9 },
+  { keywords: ['求职', '面试', '公司调研', 'offer'], idx: 10 },
 ];
 
 function matchExpert(text) {
@@ -322,6 +324,8 @@ let recommendTimer = null;
 
 function showTaskView(text) {
   const matchedIdx = matchExpert(text);
+  const currentExpert = activeExpert;
+
   content.innerHTML = `
     <div class="task-view">
       <div class="task-header">新任务</div>
@@ -331,9 +335,28 @@ function showTaskView(text) {
       </div>
     </div>`;
 
-  if (matchedIdx !== null) {
+  if (currentExpert !== null && currentExpert === matchedIdx) {
+    // 已选专家且匹配：直接用该专家处理
+    setTimeout(() => {
+      const msgs = $('taskMessages');
+      const loading = msgs.querySelector('.msg-system');
+      if (loading) loading.innerHTML = `<span class="dot-loading"><i></i><i></i><i></i></span><span>${experts[currentExpert].name} 正在处理你的任务...</span>`;
+    }, 500);
+  } else if (currentExpert !== null && matchedIdx !== null && currentExpert !== matchedIdx) {
+    // 已选专家但不匹配：建议切换
+    setTimeout(() => showSwitchCard(currentExpert, matchedIdx), 800);
+  } else if (currentExpert !== null && matchedIdx === null) {
+    // 已选专家，无更合适的：直接处理
+    setTimeout(() => {
+      const msgs = $('taskMessages');
+      const loading = msgs.querySelector('.msg-system');
+      if (loading) loading.innerHTML = `<span class="dot-loading"><i></i><i></i><i></i></span><span>${experts[currentExpert].name} 正在处理你的任务...</span>`;
+    }, 500);
+  } else if (currentExpert === null && matchedIdx !== null) {
+    // 未选专家，推荐匹配的
     setTimeout(() => showRecommendCard(matchedIdx), 800);
   }
+  // 未选专家且无匹配：保持 loading 状态（常规模式处理）
 }
 
 function showRecommendCard(idx) {
@@ -384,8 +407,14 @@ function showRecommendCard(idx) {
     clearInterval(recommendTimer);
     activeExpert = idx;
     card.remove();
-    // 回到首页并显示 badge
-    showHome();
+    // 专家直接接手当前任务
+    const msgs = $('taskMessages');
+    if (msgs) {
+      const sys = document.createElement('div');
+      sys.className = 'msg-system';
+      sys.innerHTML = `<span class="dot-loading"><i></i><i></i><i></i></span><span>${e.name} 正在处理你的任务...</span>`;
+      msgs.appendChild(sys);
+    }
   };
 }
 
@@ -398,6 +427,71 @@ function dismissRecommend(card) {
     sys.innerHTML = '<span class="dot-loading"><i></i><i></i><i></i></span><span>kerker 正在处理你的任务...</span>';
     msgs.appendChild(sys);
   }
+}
+
+/* 建议切换专家卡片 */
+function showSwitchCard(currentIdx, suggestedIdx) {
+  const current = experts[currentIdx];
+  const suggested = experts[suggestedIdx];
+  const msgs = $('taskMessages');
+  if (!msgs) return;
+
+  const loading = msgs.querySelector('.msg-system');
+  if (loading) loading.remove();
+
+  const card = document.createElement('div');
+  card.className = 'recommend-card';
+  card.innerHTML = `
+    <div style="font-size:12.5px;color:var(--muted);margin-bottom:10px">当前：${current.name}　→　建议切换为</div>
+    <div class="recommend-card-header">
+      <div class="recommend-card-icon">${suggested.icon}</div>
+      <div class="recommend-card-info">
+        <h4>${suggested.name}</h4>
+        <p>${suggested.desc}</p>
+      </div>
+    </div>
+    <div class="recommend-card-actions">
+      <button class="btn-skip" id="recSkip">继续使用${current.name}</button>
+      <button class="btn-use" id="recUse">切换</button>
+      <span class="recommend-card-timer" id="recTimer">30s</span>
+    </div>
+  `;
+  msgs.appendChild(card);
+
+  let remaining = 30;
+  const timerEl = card.querySelector('#recTimer');
+  recommendTimer = setInterval(() => {
+    remaining--;
+    if (timerEl) timerEl.textContent = remaining + 's';
+    if (remaining <= 0) {
+      clearInterval(recommendTimer);
+      // 超时：继续使用当前专家
+      card.remove();
+      const sys2 = document.createElement('div');
+      sys2.className = 'msg-system';
+      sys2.innerHTML = `<span class="dot-loading"><i></i><i></i><i></i></span><span>${current.name} 正在处理你的任务...</span>`;
+      msgs.appendChild(sys2);
+    }
+  }, 1000);
+
+  card.querySelector('#recSkip').onclick = () => {
+    clearInterval(recommendTimer);
+    card.remove();
+    const sys2 = document.createElement('div');
+    sys2.className = 'msg-system';
+    sys2.innerHTML = `<span class="dot-loading"><i></i><i></i><i></i></span><span>${current.name} 正在处理你的任务...</span>`;
+    msgs.appendChild(sys2);
+  };
+
+  card.querySelector('#recUse').onclick = () => {
+    clearInterval(recommendTimer);
+    activeExpert = suggestedIdx;
+    card.remove();
+    const sys2 = document.createElement('div');
+    sys2.className = 'msg-system';
+    sys2.innerHTML = `<span class="dot-loading"><i></i><i></i><i></i></span><span>${suggested.name} 正在处理你的任务...</span>`;
+    msgs.appendChild(sys2);
+  };
 }
 
 function renderShortcuts() {
@@ -426,7 +520,7 @@ function showExpertList() {
     <div class="expert-page">
       <div class="expert-page-header">
         <div class="expert-page-title">专家</div>
-        <div class="expert-page-sub">把专业的事交给对的人，你只管说需求</div>
+        <div class="expert-page-sub">把专业的事，交给对的人。</div>
       </div>
       <div class="expert-grid">
         ${experts.map((e, i) => `
