@@ -287,8 +287,117 @@ document.addEventListener('click', (ev) => {
 });
 
 function handleSend(text) {
-  // 发送后清空输入框，badge 保持（方便连续发）
-  $('mainInput').value = '';
+  if (!text) return;
+  // 如果已有专家选中，直接清空输入继续
+  if (activeExpert !== null) {
+    $('mainInput').value = '';
+    return;
+  }
+  // 无专家时：进入任务视图，模拟系统推荐专家
+  showTaskView(text);
+}
+
+/* ========== 任务视图 + 专家推荐 ========== */
+const expertKeywords = [
+  { keywords: ['ppt', 'PPT', '演示', '汇报', '幻灯片'], idx: 0 },
+  { keywords: ['excel', 'Excel', '表格', '记账', '公式', '数据清洗'], idx: 1 },
+  { keywords: ['转换', 'PDF', 'Word', 'OCR', '格式'], idx: 2 },
+  { keywords: ['分析', '数据', '图表', '指标', '财报'], idx: 3 },
+  { keywords: ['小红书', '笔记', '标题', '文案', '选题'], idx: 4 },
+  { keywords: ['周报', '月报', '总结', '汇报', '工作'], idx: 5 },
+  { keywords: ['股票', '行情', '研报', '估值', '财务'], idx: 6 },
+  { keywords: ['文献', '论文', '科研', 'RAG', '研究'], idx: 7 },
+  { keywords: ['算命', '占卜', '运势', '塔罗', '八字', '抽牌'], idx: 8 },
+  { keywords: ['求职', '面试', '公司调研', 'offer'], idx: 9 },
+];
+
+function matchExpert(text) {
+  for (const rule of expertKeywords) {
+    if (rule.keywords.some(k => text.includes(k))) return rule.idx;
+  }
+  return null;
+}
+
+let recommendTimer = null;
+
+function showTaskView(text) {
+  const matchedIdx = matchExpert(text);
+  content.innerHTML = `
+    <div class="task-view">
+      <div class="task-header">新任务</div>
+      <div class="task-messages" id="taskMessages">
+        <div class="msg-user">${text}</div>
+        <div class="msg-system"><span class="dot-loading"><i></i><i></i><i></i></span><span>kerker 正在思考...</span></div>
+      </div>
+    </div>`;
+
+  if (matchedIdx !== null) {
+    setTimeout(() => showRecommendCard(matchedIdx), 800);
+  }
+}
+
+function showRecommendCard(idx) {
+  const e = experts[idx];
+  const msgs = $('taskMessages');
+  if (!msgs) return;
+
+  // 移除 loading
+  const loading = msgs.querySelector('.msg-system');
+  if (loading) loading.remove();
+
+  const card = document.createElement('div');
+  card.className = 'recommend-card';
+  card.innerHTML = `
+    <div class="recommend-card-header">
+      <div class="recommend-card-icon">${e.icon}</div>
+      <div class="recommend-card-info">
+        <h4>${e.name}</h4>
+        <p>${e.desc}</p>
+      </div>
+    </div>
+    <div class="recommend-card-actions">
+      <button class="btn-skip" id="recSkip">跳过</button>
+      <button class="btn-use" id="recUse">启用专家</button>
+      <span class="recommend-card-timer" id="recTimer">30s</span>
+    </div>
+  `;
+  msgs.appendChild(card);
+
+  // 倒计时 30s
+  let remaining = 30;
+  const timerEl = card.querySelector('#recTimer');
+  recommendTimer = setInterval(() => {
+    remaining--;
+    if (timerEl) timerEl.textContent = remaining + 's';
+    if (remaining <= 0) {
+      clearInterval(recommendTimer);
+      dismissRecommend(card);
+    }
+  }, 1000);
+
+  card.querySelector('#recSkip').onclick = () => {
+    clearInterval(recommendTimer);
+    dismissRecommend(card);
+  };
+
+  card.querySelector('#recUse').onclick = () => {
+    clearInterval(recommendTimer);
+    activeExpert = idx;
+    card.remove();
+    // 回到首页并显示 badge
+    showHome();
+  };
+}
+
+function dismissRecommend(card) {
+  card.remove();
+  const msgs = $('taskMessages');
+  if (msgs) {
+    const sys = document.createElement('div');
+    sys.className = 'msg-system';
+    sys.innerHTML = '<span class="dot-loading"><i></i><i></i><i></i></span><span>kerker 正在处理你的任务...</span>';
+    msgs.appendChild(sys);
+  }
 }
 
 function renderShortcuts() {
