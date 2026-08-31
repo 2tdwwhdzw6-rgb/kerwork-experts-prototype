@@ -411,6 +411,23 @@ input { font-family: inherit; border: none; outline: none; }
 }
 .expert-card:hover .expert-card-action { opacity: 1; }
 
+/* Pin button */
+.pin-btn {
+  position: absolute; top: 18px; right: 90px;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border-radius: 6px;
+  font-size: 14px;
+  background: transparent;
+  opacity: 0;
+  transition: opacity .18s, background .12s, transform .15s;
+  cursor: pointer;
+}
+.expert-card:hover .pin-btn { opacity: 0.6; }
+.expert-card:hover .pin-btn:hover { opacity: 1; background: var(--hover); }
+.pin-btn.pinned { opacity: 1; transform: rotate(-45deg); }
+.expert-card.pinned { border-color: #d0d0d3; background: #fafcfb; }
+
 /* ========== Modal ========== */
 .modal-mask {
   position: fixed; inset: 0; z-index: 100;

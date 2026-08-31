@@ -108,7 +108,38 @@ const shortcuts = [
   { icon: '📋', text: '整理本周工作写周报', expertIdx: 6 }
 ];
 
-const quickExperts = [0, 3, 7];
+const defaultQuickExperts = [0, 3, 7];
+let recentUsedExperts = JSON.parse(localStorage.getItem('recentUsedExperts') || '[]');
+
+function saveRecentUsed() {
+  localStorage.setItem('recentUsedExperts', JSON.stringify(recentUsedExperts));
+}
+
+function recordUsage(idx) {
+  recentUsedExperts = recentUsedExperts.filter(i => i !== idx);
+  recentUsedExperts.unshift(idx);
+  if (recentUsedExperts.length > 10) recentUsedExperts.length = 10;
+  saveRecentUsed();
+}
+
+function getQuickExperts() {
+  const result = [];
+  // 最近置顶的 1 个
+  if (pinnedExperts.length > 0) {
+    result.push(pinnedExperts[0]);
+  }
+  // 最近使用的 2 个（去重）
+  for (const idx of recentUsedExperts) {
+    if (!result.includes(idx)) result.push(idx);
+    if (result.length >= 3) break;
+  }
+  // 不足 3 个时用默认补齐
+  for (const idx of defaultQuickExperts) {
+    if (!result.includes(idx)) result.push(idx);
+    if (result.length >= 3) break;
+  }
+  return result.slice(0, 3);
+}
 
 const $ = id => document.getElementById(id);
 const toast = $('toast');
@@ -200,7 +231,12 @@ function bindHomeInput() {
     if (!v) return;
     handleSend(v);
   };
-  input.addEventListener('keydown', ev => { if (ev.key === 'Enter') send.click(); });
+  input.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter') send.click();
+    if (ev.key === 'Backspace' && input.value === '' && activeExpert !== null) {
+      clearActiveExpert();
+    }
+  });
   bindPlusMenu();
 }
 
@@ -260,7 +296,7 @@ function showExpertSubmenu(parentMenu) {
   if (sub) return;
   sub = document.createElement('div');
   sub.className = 'expert-submenu';
-  sub.innerHTML = quickExperts.map(idx => {
+  sub.innerHTML = getQuickExperts().map(idx => {
     const e = experts[idx];
     const isActive = activeExpert === idx;
     return `<div class="expert-sub-item${isActive ? ' active' : ''}" data-i="${idx}">
@@ -406,8 +442,8 @@ function showRecommendCard(idx) {
   card.querySelector('#recUse').onclick = () => {
     clearInterval(recommendTimer);
     activeExpert = idx;
+    recordUsage(idx);
     card.remove();
-    // 专家直接接手当前任务
     const msgs = $('taskMessages');
     if (msgs) {
       const sys = document.createElement('div');
@@ -486,6 +522,7 @@ function showSwitchCard(currentIdx, suggestedIdx) {
   card.querySelector('#recUse').onclick = () => {
     clearInterval(recommendTimer);
     activeExpert = suggestedIdx;
+    recordUsage(suggestedIdx);
     card.remove();
     const sys2 = document.createElement('div');
     sys2.className = 'msg-system';
@@ -504,6 +541,7 @@ function renderShortcuts() {
     el.onclick = () => {
       const s = shortcuts[+el.dataset.idx];
       activeExpert = s.expertIdx;
+      recordUsage(s.expertIdx);
       renderExpertBadge(s.expertIdx);
       const input = $('mainInput');
       if (input) { input.value = s.text; input.focus(); }
@@ -512,9 +550,33 @@ function renderShortcuts() {
 }
 
 /* ========== 专家列表页 ========== */
+let pinnedExperts = JSON.parse(localStorage.getItem('pinnedExperts') || '[]');
+
+function savePinned() {
+  localStorage.setItem('pinnedExperts', JSON.stringify(pinnedExperts));
+}
+
+function togglePin(idx) {
+  const pos = pinnedExperts.indexOf(idx);
+  if (pos >= 0) {
+    pinnedExperts.splice(pos, 1);
+  } else {
+    pinnedExperts.unshift(idx);
+  }
+  savePinned();
+  showExpertList();
+}
+
+function getSortedExperts() {
+  const pinned = pinnedExperts.map(i => ({ e: experts[i], i }));
+  const rest = experts.map((e, i) => ({ e, i })).filter(({ i }) => !pinnedExperts.includes(i));
+  return [...pinned, ...rest];
+}
+
 function showExpertList() {
   currentPage = 'expert';
   $('navExpert').classList.add('active');
+  const sorted = getSortedExperts();
 
   content.innerHTML = `
     <div class="expert-page">
@@ -523,8 +585,10 @@ function showExpertList() {
         <div class="expert-page-sub">把专业的事，交给对的人。</div>
       </div>
       <div class="expert-grid">
-        ${experts.map((e, i) => `
-          <div class="expert-card" data-i="${i}">
+        ${sorted.map(({ e, i }) => {
+          const isPinned = pinnedExperts.includes(i);
+          return `
+          <div class="expert-card${isPinned ? ' pinned' : ''}" data-i="${i}">
             <div class="expert-card-top">
               <div class="expert-card-icon">${e.icon}</div>
               <div class="expert-card-info">
@@ -535,13 +599,24 @@ function showExpertList() {
             <div class="expert-card-desc">${e.desc}</div>
             <div class="expert-card-tags">${e.tags.map(t => `<span class="expert-card-tag">${t}</span>`).join('')}</div>
             <div class="expert-card-action">开始使用</div>
-          </div>
-        `).join('')}
+            <button class="pin-btn${isPinned ? ' pinned' : ''}" data-pin="${i}" title="${isPinned ? '取消置顶' : '置顶'}">📌</button>
+          </div>`;
+        }).join('')}
       </div>
     </div>`;
 
   content.querySelectorAll('.expert-card').forEach(el => {
-    el.onclick = () => openExpertModal(+el.dataset.i);
+    el.onclick = (ev) => {
+      if (ev.target.closest('.pin-btn')) return;
+      openExpertModal(+el.dataset.i);
+    };
+  });
+
+  content.querySelectorAll('.pin-btn').forEach(btn => {
+    btn.onclick = (ev) => {
+      ev.stopPropagation();
+      togglePin(+btn.dataset.pin);
+    };
   });
 }
 
@@ -589,6 +664,7 @@ let pendingPrompt = null;
 
 function startExpert(idx, prompt) {
   activeExpert = idx;
+  recordUsage(idx);
   pendingPrompt = prompt || null;
   showHome();
 }
