@@ -1138,7 +1138,7 @@ function renderBannerCarousel() {
     <div class="banner-slide banner-slide-1 active" data-slide="0">
       <div class="banner-left">
         <span class="banner-tag">PROFESSIONAL ROLES</span>
-        <div class="banner-title">专业岗位，选<span class="hl">对的专家</span></div>
+        <div class="banner-title">专业岗位，<span class="hl">任君挑选</span></div>
         <div class="banner-sub">研发、产品、调研、财务……11 位岗位专家随时待命</div>
         <span class="banner-cta">看看都有谁 →</span>
       </div>
