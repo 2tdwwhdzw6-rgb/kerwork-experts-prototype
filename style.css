@@ -724,29 +724,23 @@ input { font-family: inherit; border: none; outline: none; }
   cursor: pointer;
 }
 .banner-slide.active { opacity: 1; visibility: visible; }
-.banner-slide-1 { background: linear-gradient(120deg, #1e2a48 0%, #2d4a7a 55%, #3d6db5 100%); }
-.banner-slide-2 { background: linear-gradient(120deg, #2b1e48 0%, #4a2d7a 55%, #7a4fd9 100%); }
-.banner-slide-3 { background: linear-gradient(120deg, #0d3b34 0%, #14554a 55%, #1e8a72 100%); }
-.banner-left { min-width: 0; color: #fff; }
-.banner-tag {
-  display: inline-block;
-  font-size: 11.5px; letter-spacing: 1px;
-  padding: 3px 10px; border-radius: 20px;
-  border: 1px solid rgba(255,255,255,.35);
-  color: rgba(255,255,255,.85);
-  margin-bottom: 10px;
-}
-.banner-title { font-size: 21px; font-weight: 700; line-height: 1.3; }
-.banner-title .hl { color: #ffd76a; }
-.banner-sub { font-size: 13px; color: rgba(255,255,255,.75); margin-top: 6px; }
+.banner-slide-1 { background: linear-gradient(120deg, #eef1f6 0%, #e3e9f4 60%, #d8e3f5 100%); }
+.banner-slide-2 { background: linear-gradient(120deg, #f1eff6 0%, #e9e4f4 60%, #ded5f2 100%); }
+.banner-slide-3 { background: linear-gradient(120deg, #edf3f0 0%, #e0efe8 60%, #d2eadd 100%); }
+.banner-left { min-width: 0; color: #1d1d1f; }
+.banner-title { font-size: 21px; font-weight: 700; line-height: 1.3; color: #1d1d1f; }
+.banner-slide-1 .hl { color: #2f5fd0; }
+.banner-slide-2 .hl { color: #6a4bcf; }
+.banner-slide-3 .hl { color: #1e8a67; }
+.banner-sub { font-size: 13px; color: rgba(29,29,31,.6); margin-top: 6px; }
 .banner-cta {
   display: inline-block; margin-top: 12px;
   font-size: 12.5px; font-weight: 600;
-  background: #fff; color: #1d1d1f;
+  background: #1d1d1f; color: #fff;
   padding: 6px 14px; border-radius: 16px;
   transition: transform .15s, box-shadow .15s;
 }
-.banner-slide:hover .banner-cta { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+.banner-slide:hover .banner-cta { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,.12); }
 /* Banner1 右侧：岗位专家弹幕滚动 */
 .banner-roles {
   flex-shrink: 0; width: 300px;
@@ -769,25 +763,26 @@ input { font-family: inherit; border: none; outline: none; }
 }
 .banner-chip {
   display: flex; align-items: center; gap: 5px;
-  background: rgba(255,255,255,.14);
-  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(29,29,31,.08);
   border-radius: 14px;
   padding: 4px 11px;
-  color: #fff; font-size: 12px; font-weight: 500;
+  color: #1d1d1f; font-size: 12px; font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
-  transition: background .15s;
+  transition: background .15s, box-shadow .15s;
 }
-.banner-chip:hover { background: rgba(255,255,255,.28); }
+.banner-chip:hover { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .banner-chip-icon { font-size: 12.5px; }
 /* Banner2/3 右侧大图标 */
 .banner-art {
-  flex-shrink: 0; width: 110px; height: 110px;
+  flex-shrink: 0; width: 100px; height: 100px;
   display: grid; place-items: center;
-  font-size: 52px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 50%;
+  font-size: 44px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(29,29,31,.06);
+  border-radius: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 /* 轮播圆点 */
 .banner-dots {
@@ -796,11 +791,11 @@ input { font-family: inherit; border: none; outline: none; }
 }
 .banner-dot {
   width: 7px; height: 7px; border-radius: 4px;
-  background: rgba(255,255,255,.4);
+  background: rgba(29,29,31,.18);
   border: none; padding: 0; cursor: pointer;
   transition: width .2s, background .2s;
 }
-.banner-dot.active { width: 18px; background: #fff; }
+.banner-dot.active { width: 18px; background: #1d1d1f; }
 
 /* ========== Responsive ========== */
 @media (max-width: 900px) {

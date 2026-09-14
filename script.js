@@ -1137,7 +1137,6 @@ function renderBannerCarousel() {
   box.innerHTML = `
     <div class="banner-slide banner-slide-1 active" data-slide="0">
       <div class="banner-left">
-        <span class="banner-tag">PROFESSIONAL ROLES</span>
         <div class="banner-title">专业人士，都用<span class="hl">岗位专家</span></div>
         <div class="banner-sub">前端、后端、PM、财务……你想要的，我们都有</div>
         <span class="banner-cta">看看都有谁 →</span>
@@ -1146,7 +1145,6 @@ function renderBannerCarousel() {
     </div>
     <div class="banner-slide banner-slide-2" data-slide="1">
       <div class="banner-left">
-        <span class="banner-tag">RESEARCH</span>
         <div class="banner-title">文献再多也不慌，<span class="hl">读透才是硬道理</span></div>
         <div class="banner-sub">科研助手：文献清单、观点整理、研究框架，一次配齐</div>
         <span class="banner-cta">开始科研 →</span>
@@ -1155,7 +1153,6 @@ function renderBannerCarousel() {
     </div>
     <div class="banner-slide banner-slide-3" data-slide="2">
       <div class="banner-left">
-        <span class="banner-tag">KERWORK ON PC</span>
         <div class="banner-title">电脑卡了、C 盘满了？<span class="hl">KerWork 帮你解决</span></div>
         <div class="banner-sub">电脑操作与排障助手：帮你优化电脑性能，文件、软件、提速全覆盖</div>
         <span class="banner-cta">立即体验 →</span>
