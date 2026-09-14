@@ -1139,7 +1139,7 @@ function renderBannerCarousel() {
       <div class="banner-left">
         <span class="banner-tag">PROFESSIONAL ROLES</span>
         <div class="banner-title">专业人士，都用<span class="hl">岗位专家</span></div>
-        <div class="banner-sub">前端、后端、PM、财务……11 个岗位，点谁谁来</div>
+        <div class="banner-sub">前端、后端、PM、财务……11 个岗位，随时待命</div>
         <span class="banner-cta">看看都有谁 →</span>
       </div>
       <div class="banner-roles" id="bannerRoles"></div>
