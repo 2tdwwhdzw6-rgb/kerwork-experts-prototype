@@ -387,6 +387,27 @@ input { font-family: inherit; border: none; outline: none; }
   -webkit-overflow-scrolling: touch;
 }
 .cat-tabs::-webkit-scrollbar { display: none; }
+.cat-tabs-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+.cat-tabs-wrap .cat-tabs { margin-bottom: 0; padding-right: 36px; }
+.cat-tabs-next {
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #555; font-size: 18px; line-height: 1;
+  display: none; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: background .15s, color .15s;
+  z-index: 2;
+}
+.cat-tabs-next.show { display: flex; }
+.cat-tabs-next:hover { background: var(--text); color: #fff; }
 .cat-tab {
   display: flex; align-items: center; gap: 5px;
   padding: 7px 15px;

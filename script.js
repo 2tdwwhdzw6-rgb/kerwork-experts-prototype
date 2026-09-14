@@ -1,5 +1,5 @@
 /* 分类定义（严格对应需求文档「三、新增专家类型」；专家可挂多分类） */
-const categories = ["全部","专业岗位","办公提效","产品研发","创意设计","opc","内容创作","数据研究","营销运营","金融法律","学习成长","求职招聘","生活娱乐","沟通表达","健康管理"];
+const categories = ["全部","岗位专家","办公提效","产品研发","创意设计","opc","内容创作","数据研究","营销运营","金融法律","学习成长","求职招聘","生活娱乐","沟通表达","健康管理"];
 
 const experts = [
   {
@@ -111,7 +111,7 @@ const experts = [
     ]
   },
   {
-    name: '前端开发工程师', icon: '💻', cats: ["专业岗位","产品研发"], kw: ["前端","网页","页面","布局","交互"], tags: ["页面开发","交互实现","界面优化"],
+    name: '前端开发工程师', icon: '💻', cats: ["岗位专家","产品研发"], kw: ["前端","网页","页面","布局","交互"], tags: ["页面开发","交互实现","界面优化"],
     desc: '把设计稿变成真正好用的页面：细节还原，状态完整，用户每一步都知道接下来会发生什么。',
     examples: [
       '把这个设计稿做成网页',
@@ -120,7 +120,7 @@ const experts = [
     ]
   },
   {
-    name: '后端架构师', icon: '🏗️', cats: ["专业岗位","产品研发"], kw: ["后端","架构","api","数据库","接口"], tags: ["服务架构","接口设计","数据建模"],
+    name: '后端架构师', icon: '🏗️', cats: ["岗位专家","产品研发"], kw: ["后端","架构","api","数据库","接口"], tags: ["服务架构","接口设计","数据建模"],
     desc: '把“先跑起来再说”的代码变成数据模型清晰、接口边界明确、扛得住业务增长的架构。',
     examples: [
       '设计这个系统的后端架构',
@@ -129,7 +129,7 @@ const experts = [
     ]
   },
   {
-    name: '产品经理', icon: '🧭', cats: ["专业岗位","产品研发"], kw: ["prd","需求","产品","优先级"], tags: ["需求分析","产品规划","PRD"],
+    name: '产品经理', icon: '🧭', cats: ["岗位专家","产品研发"], kw: ["prd","需求","产品","优先级"], tags: ["需求分析","产品规划","PRD"],
     desc: '把“大家都想要”还原成真正要解决的问题，再判断做什么、先做什么，以及什么暂时不做。',
     examples: [
       '把这个想法整理成 PRD',
@@ -138,7 +138,7 @@ const experts = [
     ]
   },
   {
-    name: '代码审查员', icon: '🔎', cats: ["专业岗位","产品研发"], kw: ["代码审查","bug","重构","代码质量"], tags: ["代码质量","问题发现","重构建议"],
+    name: '代码审查员', icon: '🔎', cats: ["岗位专家","产品研发"], kw: ["代码审查","bug","重构","代码质量"], tags: ["代码质量","问题发现","重构建议"],
     desc: '专挑“能跑但经不起改”的代码：边界条件、多人协作、历史欠账逐条过，每条都给能落地的改法。',
     examples: [
       '审查这段代码有什么问题',
@@ -147,7 +147,7 @@ const experts = [
     ]
   },
   {
-    name: '项目管理师', icon: '📅', cats: ["专业岗位","产品研发"], kw: ["项目","排期","进度","风险"], tags: ["任务拆解","进度管理","风险跟踪"],
+    name: '项目管理师', icon: '📅', cats: ["岗位专家","产品研发"], kw: ["项目","排期","进度","风险"], tags: ["任务拆解","进度管理","风险跟踪"],
     desc: '把“赶紧做完”变成谁在什么时候交付什么，提前找出最可能拖延的环节，让项目按计划往前走。',
     examples: [
       '帮我拆解这个项目计划',
@@ -165,7 +165,7 @@ const experts = [
     ]
   },
   {
-    name: '市场调研员', icon: '🔍', cats: ["专业岗位","opc"], kw: ["调研","竞品","行业分析","市场规模"], tags: ["市场调研","竞品分析","用户洞察"],
+    name: '市场调研员', icon: '🔍', cats: ["岗位专家","opc"], kw: ["调研","竞品","行业分析","市场规模"], tags: ["市场调研","竞品分析","用户洞察"],
     desc: '把散落在行业报告、评论区、社交平台的信号整理成能拿去拍板的结论：竞品动向、用户抱怨、机会缺口一目了然。',
     examples: [
       '做一份竞品分析报告',
@@ -174,7 +174,7 @@ const experts = [
     ]
   },
   {
-    name: '战略咨询师', icon: '♟️', cats: ["专业岗位","opc"], kw: ["战略","咨询","市场分析","竞品"], tags: ["战略分析","竞争研究","决策支持"],
+    name: '战略咨询师', icon: '♟️', cats: ["岗位专家","opc"], kw: ["战略","咨询","市场分析","竞品"], tags: ["战略分析","竞争研究","决策支持"],
     desc: '“这个方向值不值得 all in”——用竞争格局、成本结构和风险假设把决策摆上台面，想清楚再下注。',
     examples: [
       '分析这个业务方向是否值得做',
@@ -183,7 +183,7 @@ const experts = [
     ]
   },
   {
-    name: '财务分析师', icon: '🧮', cats: ["专业岗位","opc"], kw: ["财务","利润表","成本","经营分析"], tags: ["财务分析","经营指标","预算决策"],
+    name: '财务分析师', icon: '🧮', cats: ["岗位专家","opc"], kw: ["财务","利润表","成本","经营分析"], tags: ["财务分析","经营指标","预算决策"],
     desc: '利润表只给结果，分析才给原因：钱从哪条业务赚来、在哪个环节悄悄漏掉，一页纸讲清楚。',
     examples: [
       '分析这份利润表',
@@ -192,7 +192,7 @@ const experts = [
     ]
   },
   {
-    name: '招投标管理专家', icon: '📑', cats: ["专业岗位","opc"], kw: ["招标","投标","标书"], tags: ["标书撰写","资质梳理","流程管理"],
+    name: '招投标管理专家', icon: '📑', cats: ["岗位专家","opc"], kw: ["招标","投标","标书"], tags: ["标书撰写","资质梳理","流程管理"],
     desc: '招标文件逐条拆解：资质门槛、评分点对照、标书交叉检查，别让一个月的准备倒在最后的细节上。',
     examples: [
       '解读这份招标文件的要求',
@@ -273,7 +273,7 @@ const experts = [
     ]
   },
   {
-    name: '运营增长专家', icon: '📈', cats: ["专业岗位","营销运营"], kw: ["增长","留存","转化","aarrr"], tags: ["增长策略","留存转化","数据分析"],
+    name: '运营增长专家', icon: '📈', cats: ["岗位专家","营销运营"], kw: ["增长","留存","转化","aarrr"], tags: ["增长策略","留存转化","数据分析"],
     desc: '用数据漏斗说话：拉新、激活、留存、召回逐层拆解，找到流失最严重的一层，给出下周就能上手的方案。',
     examples: [
       '分析我的用户增长数据',
@@ -498,7 +498,7 @@ const experts = [
     ]
   },
   {
-    name: '简历筛选助手（hr专用）', icon: '🗂️', cats: ["专业岗位","求职招聘"], kw: ["简历筛选","jd","候选人","人才画像"], tags: ["简历初筛","人才画像","岗位匹配"],
+    name: '简历筛选助手（hr专用）', icon: '🗂️', cats: ["岗位专家","求职招聘"], kw: ["简历筛选","jd","候选人","人才画像"], tags: ["简历初筛","人才画像","岗位匹配"],
     desc: 'HR 的筛选副驾：把 JD 变成清晰的筛选标准，批量初筛简历并按匹配度给出面试建议。',
     examples: [
       '根据这个 JD 帮我筛简历',
@@ -1171,8 +1171,8 @@ function renderBannerCarousel() {
     slide.onclick = () => {
       const i = +slide.dataset.slide;
       if (i === 0) {
-        setActiveCategory('专业岗位');
-        document.querySelectorAll('#catTabs .cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === '专业岗位'));
+        setActiveCategory('岗位专家');
+        document.querySelectorAll('#catTabs .cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === '岗位专家'));
         const activeTab = document.querySelector('#catTabs .cat-tab.active');
         if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         return;
@@ -1187,7 +1187,7 @@ function renderBannerCarousel() {
   renderBannerRoles();
 }
 
-/* 每张 banner 按各自停留时长自动切换：专业岗位 5s，其余 3s */
+/* 每张 banner 按各自停留时长自动切换：岗位专家 5s，其余 3s */
 function scheduleBannerNext() {
   if (bannerTimeout) clearTimeout(bannerTimeout);
   bannerTimeout = setTimeout(() => {
@@ -1245,7 +1245,10 @@ function showExpertList() {
         </div>
       </div>
       <div class="banner-carousel" id="bannerCarousel"></div>
-      <div class="cat-tabs" id="catTabs">${renderCategoryTabs()}</div>
+      <div class="cat-tabs-wrap">
+        <div class="cat-tabs" id="catTabs">${renderCategoryTabs()}</div>
+        <button class="cat-tabs-next" id="catTabsNext" title="向右滑动">›</button>
+      </div>
       <div class="expert-grid" id="expertGrid"></div>
     </div>`;
 
@@ -1270,6 +1273,19 @@ function showExpertList() {
       tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     };
   });
+
+  /* 分类 tab 行右滑按钮：有更多内容时显示，滚到底自动隐藏 */
+  const tabsEl = $('catTabs');
+  const nextBtn = $('catTabsNext');
+  const updateNextBtn = () => {
+    const canScroll = tabsEl.scrollWidth - tabsEl.clientWidth > 2;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    nextBtn.classList.toggle('show', canScroll && !atEnd);
+  };
+  nextBtn.onclick = () => tabsEl.scrollBy({ left: 220, behavior: 'smooth' });
+  tabsEl.addEventListener('scroll', updateNextBtn, { passive: true });
+  window.addEventListener('resize', updateNextBtn);
+  requestAnimationFrame(updateNextBtn);
 
   renderExpertGrid();
 }
