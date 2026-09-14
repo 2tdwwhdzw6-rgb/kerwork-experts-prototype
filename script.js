@@ -1156,8 +1156,8 @@ function renderBannerCarousel() {
     <div class="banner-slide banner-slide-3" data-slide="2">
       <div class="banner-left">
         <span class="banner-tag">KERWORK ON PC</span>
-        <div class="banner-title">电脑卡了、C 盘满了？<span class="hl">说给 KerWork 听</span></div>
-        <div class="banner-sub">电脑操作与排障助手：把现象一步步变成能照做的解决方案</div>
+        <div class="banner-title">电脑卡了、C 盘满了？<span class="hl">KerWork 帮你解决</span></div>
+        <div class="banner-sub">电脑操作与排障助手：帮你优化电脑性能，文件、软件、提速全覆盖</div>
         <span class="banner-cta">立即体验 →</span>
       </div>
       <div class="banner-art">${pcIcon}</div>
