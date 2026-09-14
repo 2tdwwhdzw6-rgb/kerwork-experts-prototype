@@ -1211,13 +1211,14 @@ const bannerRoleNames = ['前端开发工程师', '后端架构师', '产品经�
 const bannerRoleIdx = bannerRoleNames.map(n => experts.findIndex(e => e.name === n)).filter(i => i >= 0);
 const bannerScientistIdx = experts.findIndex(e => e.name === '科研助手');
 const bannerPcIdx = experts.findIndex(e => e.name === '电脑操作与排障助手');
-let bannerTimer = null;
+const bannerDwellTimes = [5000, 3000, 3000];
+let bannerTimeout = null;
 let bannerActive = 0;
 
 function renderBannerCarousel() {
   const box = $('bannerCarousel');
   if (!box) return;
-  if (bannerTimer) { clearInterval(bannerTimer); bannerTimer = null; }
+  if (bannerTimeout) { clearTimeout(bannerTimeout); bannerTimeout = null; }
   bannerActive = 0;
 
   const pcIcon = bannerPcIdx >= 0 ? experts[bannerPcIdx].icon : '💻';
@@ -1266,9 +1267,17 @@ function renderBannerCarousel() {
     };
   });
 
-  bannerTimer = setInterval(() => setBannerSlide((bannerActive + 1) % 3), 5000);
+  scheduleBannerNext();
 
   renderBannerRoles();
+}
+
+/* 每张 banner 按各自停留时长自动切换：专业岗位 5s，其余 3s */
+function scheduleBannerNext() {
+  if (bannerTimeout) clearTimeout(bannerTimeout);
+  bannerTimeout = setTimeout(() => {
+    setBannerSlide((bannerActive + 1) % bannerDwellTimes.length);
+  }, bannerDwellTimes[bannerActive]);
 }
 
 function renderBannerRoles() {
@@ -1300,6 +1309,7 @@ function setBannerSlide(i) {
   bannerActive = i;
   box.querySelectorAll('.banner-slide').forEach(s => s.classList.toggle('active', +s.dataset.slide === i));
   box.querySelectorAll('.banner-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+  scheduleBannerNext();
 }
 
 function showExpertList() {
