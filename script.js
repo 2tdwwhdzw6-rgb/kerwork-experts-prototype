@@ -1212,17 +1212,13 @@ const bannerRoleIdx = bannerRoleNames.map(n => experts.findIndex(e => e.name ===
 const bannerScientistIdx = experts.findIndex(e => e.name === '科研助手');
 const bannerPcIdx = experts.findIndex(e => e.name === '电脑操作与排障助手');
 let bannerTimer = null;
-let bannerRoleTimer = null;
 let bannerActive = 0;
-let bannerRoleActive = 0;
 
 function renderBannerCarousel() {
   const box = $('bannerCarousel');
   if (!box) return;
   if (bannerTimer) { clearInterval(bannerTimer); bannerTimer = null; }
-  if (bannerRoleTimer) { clearInterval(bannerRoleTimer); bannerRoleTimer = null; }
   bannerActive = 0;
-  bannerRoleActive = 0;
 
   const pcIcon = bannerPcIdx >= 0 ? experts[bannerPcIdx].icon : '💻';
   box.innerHTML = `
@@ -1233,10 +1229,7 @@ function renderBannerCarousel() {
         <div class="banner-sub">研发、产品、调研、财务……11 位岗位专家随时待命</div>
         <span class="banner-cta">看看都有谁 →</span>
       </div>
-      <div class="banner-roles">
-        <div class="banner-role-cards" id="bannerRoleCards"></div>
-        <div class="banner-role-dots" id="bannerRoleDots"></div>
-      </div>
+      <div class="banner-roles" id="bannerRoles"></div>
     </div>
     <div class="banner-slide banner-slide-2" data-slide="1">
       <div class="banner-left">
@@ -1279,43 +1272,26 @@ function renderBannerCarousel() {
 }
 
 function renderBannerRoles() {
-  const cards = $('bannerRoleCards');
-  const rdots = $('bannerRoleDots');
-  if (!cards || !rdots) return;
-  cards.innerHTML = bannerRoleIdx.map(idx => {
-    const e = experts[idx];
-    return `
-    <div class="banner-role-card" data-i="${idx}">
-      <div class="banner-role-icon">${e.icon}</div>
-      <div>
-        <div class="banner-role-name">${e.name}</div>
-        <div class="banner-role-tags">${e.tags.join(' · ')}</div>
+  const box = $('bannerRoles');
+  if (!box) return;
+  // 11 位岗位专家拆成 3 行，每行内容复制一份实现无缝弹幕滚动，中间行反向
+  const rows = [bannerRoleIdx.slice(0, 4), bannerRoleIdx.slice(4, 8), bannerRoleIdx.slice(8)];
+  box.innerHTML = rows.map((row, r) => `
+    <div class="banner-marquee">
+      <div class="banner-track${r === 1 ? ' rev' : ''}">
+        ${[0, 1].map(dup => row.map(idx => {
+          const e = experts[idx];
+          return `<span class="banner-chip" data-i="${idx}"><span class="banner-chip-icon">${e.icon}</span>${e.name}</span>`;
+        }).join('')).join('')}
       </div>
-    </div>`;
-  }).join('');
-  rdots.innerHTML = bannerRoleIdx.map((idx, i) => `<span class="banner-role-dot${i === 0 ? ' active' : ''}"></span>`).join('');
+    </div>`).join('');
 
-  updateBannerRoles();
-  if (bannerRoleIdx.length > 1) {
-    bannerRoleTimer = setInterval(() => {
-      bannerRoleActive = (bannerRoleActive + 1) % bannerRoleIdx.length;
-      updateBannerRoles();
-    }, 2600);
-  }
-  cards.querySelectorAll('.banner-role-card').forEach(card => {
-    card.onclick = (ev) => {
+  box.querySelectorAll('.banner-chip').forEach(chip => {
+    chip.onclick = (ev) => {
       ev.stopPropagation();
-      openExpertModal(+card.dataset.i);
+      openExpertModal(+chip.dataset.i);
     };
   });
-}
-
-function updateBannerRoles() {
-  const cards = $('bannerRoleCards');
-  const rdots = $('bannerRoleDots');
-  if (!cards) return;
-  cards.querySelectorAll('.banner-role-card').forEach((card, i) => card.classList.toggle('active', i === bannerRoleActive));
-  if (rdots) rdots.querySelectorAll('.banner-role-dot').forEach((d, i) => d.classList.toggle('active', i === bannerRoleActive));
 }
 
 function setBannerSlide(i) {

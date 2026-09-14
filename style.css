@@ -743,26 +743,39 @@ input { font-family: inherit; border: none; outline: none; }
   transition: transform .15s, box-shadow .15s;
 }
 .banner-slide:hover .banner-cta { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
-/* Banner1 右侧：专业岗位专家轮换 */
-.banner-roles { flex-shrink: 0; width: 300px; position: relative; height: 84px; }
-.banner-role-card {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 12px;
-  padding: 0 18px;
-  color: #fff;
-  opacity: 0; transform: translateX(14px);
-  transition: opacity .4s, transform .4s;
+/* Banner1 右侧：岗位专家弹幕滚动 */
+.banner-roles {
+  flex-shrink: 0; width: 340px;
+  display: flex; flex-direction: column; gap: 9px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.banner-role-card.active { opacity: 1; transform: translateX(0); }
-.banner-role-icon { font-size: 28px; }
-.banner-role-name { font-size: 15px; font-weight: 600; }
-.banner-role-tags { font-size: 12px; color: rgba(255,255,255,.72); margin-top: 3px; }
-.banner-role-dots { display: flex; gap: 4px; margin-top: 8px; }
-.banner-role-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .2s; }
-.banner-role-dot.active { background: #ffd76a; }
+.banner-marquee { overflow: hidden; }
+.banner-track {
+  display: flex; gap: 9px;
+  width: max-content;
+  animation: bannerScroll 22s linear infinite;
+}
+.banner-track.rev { animation-direction: reverse; animation-duration: 26s; }
+.banner-carousel:hover .banner-track { animation-play-state: paused; }
+@keyframes bannerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.banner-chip {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #fff; font-size: 13.5px; font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s;
+}
+.banner-chip:hover { background: rgba(255,255,255,.28); }
+.banner-chip-icon { font-size: 15px; }
 /* Banner2/3 右侧大图标 */
 .banner-art {
   flex-shrink: 0; width: 110px; height: 110px;
