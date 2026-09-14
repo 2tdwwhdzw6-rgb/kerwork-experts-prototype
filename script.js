@@ -1206,6 +1206,126 @@ function renderExpertGrid() {
   });
 }
 
+/* ========== Banner 轮播 ========== */
+const bannerRoleNames = ['前端开发工程师', '后端架构师', '产品经理', '代码审查员', '项目管理师', '市场调研员', '战略咨询师', '财务分析师', '招投标管理专家', '运营增长专家', '人力资源顾问'];
+const bannerRoleIdx = bannerRoleNames.map(n => experts.findIndex(e => e.name === n)).filter(i => i >= 0);
+const bannerScientistIdx = experts.findIndex(e => e.name === '科研助手');
+const bannerPcIdx = experts.findIndex(e => e.name === '电脑操作与排障助手');
+let bannerTimer = null;
+let bannerRoleTimer = null;
+let bannerActive = 0;
+let bannerRoleActive = 0;
+
+function renderBannerCarousel() {
+  const box = $('bannerCarousel');
+  if (!box) return;
+  if (bannerTimer) { clearInterval(bannerTimer); bannerTimer = null; }
+  if (bannerRoleTimer) { clearInterval(bannerRoleTimer); bannerRoleTimer = null; }
+  bannerActive = 0;
+  bannerRoleActive = 0;
+
+  const pcIcon = bannerPcIdx >= 0 ? experts[bannerPcIdx].icon : '💻';
+  box.innerHTML = `
+    <div class="banner-slide banner-slide-1 active" data-slide="0">
+      <div class="banner-left">
+        <span class="banner-tag">PROFESSIONAL ROLES</span>
+        <div class="banner-title">专业岗位，选<span class="hl">对的专家</span></div>
+        <div class="banner-sub">研发、产品、调研、财务……11 位岗位专家随时待命</div>
+        <span class="banner-cta">看看都有谁 →</span>
+      </div>
+      <div class="banner-roles">
+        <div class="banner-role-cards" id="bannerRoleCards"></div>
+        <div class="banner-role-dots" id="bannerRoleDots"></div>
+      </div>
+    </div>
+    <div class="banner-slide banner-slide-2" data-slide="1">
+      <div class="banner-left">
+        <span class="banner-tag">RESEARCH</span>
+        <div class="banner-title">文献再多也不慌，<span class="hl">读透才是硬道理</span></div>
+        <div class="banner-sub">科研助手：文献清单、观点整理、研究框架，一次配齐</div>
+        <span class="banner-cta">开始科研 →</span>
+      </div>
+      <div class="banner-art">🔬</div>
+    </div>
+    <div class="banner-slide banner-slide-3" data-slide="2">
+      <div class="banner-left">
+        <span class="banner-tag">KERWORK ON PC</span>
+        <div class="banner-title">电脑卡了、C 盘满了？<span class="hl">说给 KerWork 听</span></div>
+        <div class="banner-sub">电脑操作与排障助手：把现象一步步变成能照做的解决方案</div>
+        <span class="banner-cta">立即体验 →</span>
+      </div>
+      <div class="banner-art">${pcIcon}</div>
+    </div>
+    <div class="banner-dots" id="bannerDots"></div>`;
+
+  const dots = $('bannerDots');
+  dots.innerHTML = [0, 1, 2].map(i => `<button class="banner-dot${i === 0 ? ' active' : ''}" data-i="${i}"></button>`).join('');
+  dots.querySelectorAll('.banner-dot').forEach(btn => {
+    btn.onclick = (ev) => { ev.stopPropagation(); setBannerSlide(+btn.dataset.i); };
+  });
+
+  box.querySelectorAll('.banner-slide').forEach(slide => {
+    slide.onclick = () => {
+      const i = +slide.dataset.slide;
+      if (i === 0) return;
+      const idx = i === 1 ? bannerScientistIdx : bannerPcIdx;
+      if (idx >= 0) openExpertModal(idx);
+    };
+  });
+
+  bannerTimer = setInterval(() => setBannerSlide((bannerActive + 1) % 3), 5000);
+
+  renderBannerRoles();
+}
+
+function renderBannerRoles() {
+  const cards = $('bannerRoleCards');
+  const rdots = $('bannerRoleDots');
+  if (!cards || !rdots) return;
+  cards.innerHTML = bannerRoleIdx.map(idx => {
+    const e = experts[idx];
+    return `
+    <div class="banner-role-card" data-i="${idx}">
+      <div class="banner-role-icon">${e.icon}</div>
+      <div>
+        <div class="banner-role-name">${e.name}</div>
+        <div class="banner-role-tags">${e.tags.join(' · ')}</div>
+      </div>
+    </div>`;
+  }).join('');
+  rdots.innerHTML = bannerRoleIdx.map((idx, i) => `<span class="banner-role-dot${i === 0 ? ' active' : ''}"></span>`).join('');
+
+  updateBannerRoles();
+  if (bannerRoleIdx.length > 1) {
+    bannerRoleTimer = setInterval(() => {
+      bannerRoleActive = (bannerRoleActive + 1) % bannerRoleIdx.length;
+      updateBannerRoles();
+    }, 2600);
+  }
+  cards.querySelectorAll('.banner-role-card').forEach(card => {
+    card.onclick = (ev) => {
+      ev.stopPropagation();
+      openExpertModal(+card.dataset.i);
+    };
+  });
+}
+
+function updateBannerRoles() {
+  const cards = $('bannerRoleCards');
+  const rdots = $('bannerRoleDots');
+  if (!cards) return;
+  cards.querySelectorAll('.banner-role-card').forEach((card, i) => card.classList.toggle('active', i === bannerRoleActive));
+  if (rdots) rdots.querySelectorAll('.banner-role-dot').forEach((d, i) => d.classList.toggle('active', i === bannerRoleActive));
+}
+
+function setBannerSlide(i) {
+  const box = $('bannerCarousel');
+  if (!box) return;
+  bannerActive = i;
+  box.querySelectorAll('.banner-slide').forEach(s => s.classList.toggle('active', +s.dataset.slide === i));
+  box.querySelectorAll('.banner-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+}
+
 function showExpertList() {
   currentPage = 'expert';
   $('navExpert').classList.add('active');
@@ -1223,9 +1343,12 @@ function showExpertList() {
           <button class="expert-search-clear${searchQuery ? ' show' : ''}" id="expertSearchClear">×</button>
         </div>
       </div>
+      <div class="banner-carousel" id="bannerCarousel"></div>
       <div class="cat-tabs" id="catTabs">${renderCategoryTabs()}</div>
       <div class="expert-grid" id="expertGrid"></div>
     </div>`;
+
+  renderBannerCarousel();
 
   const searchInput = $('expertSearchInput');
   searchInput.addEventListener('input', () => {
