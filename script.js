@@ -1173,7 +1173,12 @@ function renderBannerCarousel() {
   box.querySelectorAll('.banner-slide').forEach(slide => {
     slide.onclick = () => {
       const i = +slide.dataset.slide;
-      if (i === 0) return;
+      if (i === 0) {
+        setActiveCategory('专业岗位');
+        document.querySelectorAll('#catTabs .cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === '专业岗位'));
+        document.getElementById('catTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
       const idx = i === 1 ? bannerScientistIdx : bannerPcIdx;
       if (idx >= 0) openExpertModal(idx);
     };
