@@ -380,9 +380,13 @@ input { font-family: inherit; border: none; outline: none; }
 
 /* 分类导航 */
 .cat-tabs {
-  display: flex; flex-wrap: wrap; gap: 8px;
+  display: flex; flex-wrap: nowrap; gap: 8px;
   margin-bottom: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.cat-tabs::-webkit-scrollbar { display: none; }
 .cat-tab {
   display: flex; align-items: center; gap: 5px;
   padding: 7px 15px;
@@ -423,7 +427,7 @@ input { font-family: inherit; border: none; outline: none; }
 /* Grid */
 .expert-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 

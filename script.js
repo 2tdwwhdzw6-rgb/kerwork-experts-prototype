@@ -1176,7 +1176,8 @@ function renderBannerCarousel() {
       if (i === 0) {
         setActiveCategory('专业岗位');
         document.querySelectorAll('#catTabs .cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === '专业岗位'));
-        document.getElementById('catTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const activeTab = document.querySelector('#catTabs .cat-tab.active');
+        if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         return;
       }
       const idx = i === 1 ? bannerScientistIdx : bannerPcIdx;
@@ -1269,6 +1270,7 @@ function showExpertList() {
     tab.onclick = () => {
       setActiveCategory(tab.dataset.cat);
       $('catTabs').querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t === tab));
+      tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     };
   });
 
