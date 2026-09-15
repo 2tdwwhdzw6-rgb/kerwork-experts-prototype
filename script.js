@@ -1137,8 +1137,8 @@ function renderBannerCarousel() {
   box.innerHTML = `
     <div class="banner-slide banner-slide-1 active" data-slide="0">
       <div class="banner-left">
-        <div class="banner-title">专业人士，都用<span class="hl">岗位专家</span></div>
-        <div class="banner-sub">前端、后端、PM、财务……你想要的，我们都有</div>
+        <div class="banner-title">每个岗位，都有适合你的<span class="hl">专家</span></div>
+        <div class="banner-sub">研发、项目管理、运营、财务……无论你在哪个岗位，都能找到适合的</div>
         <span class="banner-cta">看看都有谁 →</span>
       </div>
       <div class="banner-roles" id="bannerRoles"></div>
